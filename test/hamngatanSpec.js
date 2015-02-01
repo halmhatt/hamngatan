@@ -1,3 +1,5 @@
+require('core-js/shim');
+
 var sinon = require('sinon');
 var Hamngatan = require('../lib/hamngatan.js');
 var fs = require('fs');
@@ -5,6 +7,8 @@ var request = require('request');
 var expect = require('chai').expect;
 
 describe('hamngatan', function() {
+	var hamngatan;
+
 	before(function() {
 		sinon
 			.stub(request, 'get')
@@ -16,11 +20,11 @@ describe('hamngatan', function() {
 	});
 
 	beforeEach(function() {
-		this.hamngatan = new Hamngatan('no-real-key');
+		hamngatan = new Hamngatan('no-real-key');
 	})
 
 	it('should convert a xml to javascript', function(done) {
-		this.hamngatan.get({from: '2015-01-01'}, function(err, result) {
+		hamngatan.get({from: '2015-01-01'}, function(err, result) {
 
 			expect(request.get.called).to.be.equal(true);
 			expect(result).to.not.be.empty;
@@ -36,7 +40,24 @@ describe('hamngatan', function() {
 		});
 	});
 
-	xit('should handle fails', function() {
-		
+	it('should work with promises', function(done) {
+		hamngatan.get({from: '2015-01-01'})
+			.then(function(result) {
+				expect(result).to.have.length(1);
+			})
+			.then(done);
+	});
+
+	it('should work with callback', function(done) {
+		hamngatan.get({from: '2015-01-01'}, function(err, result) {
+			expect(result).to.have.length(1);
+			done();
+		});
+	});
+
+	it('should throw for not specifying from', function() {
+		expect(function() {
+			hamngatan.get();
+		}).to.throw(Error, /specify from/);
 	});
 });

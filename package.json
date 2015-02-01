@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "Linkoping, Sweden air quality at hamngatan",
   "main": "lib/hamngatan.js",
+  "bin": {
+    "hamngatan": "lib/cli.js"
+  },
   "scripts": {
-    "test": "mocha --compilers js:6to5/register",
-    "6to5": "6to5-node test.js"
+    "pretest": "npm run build",
+    "test": "mocha",
+    "6to5": "6to5-node test.js",
+    "build": "make"
   },
   "repository": {
     "type": "git",
@@ -23,6 +28,8 @@
   },
   "homepage": "https://github.com/halmhatt/hamngatan",
   "dependencies": {
+    "commander": "^2.6.0",
+    "core-js": "^0.4.10",
     "moment": "^2.9.0",
     "request": "^2.51.0",
     "xml2js": "^0.4.4"
