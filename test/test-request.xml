@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ResponseListaLuftDataobjekt xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://opendata.linkoping.se/ws">
+  <status>ok</status>
+  <message />
+  <ListaLuftDataobjekt>
+    <LuftDataObj>
+      <SystemCodeNumber>linkoping</SystemCodeNumber>
+      <LastUpdated>2015-02-01 00:00:00</LastUpdated>
+      <PM10>0.619000</PM10>
+	    </LuftDataObj>
+  </ListaLuftDataobjekt>
+</ResponseListaLuftDataobjekt>

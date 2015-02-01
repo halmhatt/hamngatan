@@ -4,7 +4,7 @@
   "description": "Linkoping, Sweden air quality at hamngatan",
   "main": "lib/hamngatan.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --compilers js:6to5/register",
     "6to5": "6to5-node test.js"
   },
   "repository": {
@@ -28,6 +28,9 @@
     "xml2js": "^0.4.4"
   },
   "devDependencies": {
-    "6to5": "^3.2.1"
+    "6to5": "^3.2.1",
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0",
+    "sinon": "^1.12.2"
   }
 }
