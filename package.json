@@ -1,0 +1,33 @@
+{
+  "name": "hamngatan",
+  "version": "1.0.0",
+  "description": "Linkoping, Sweden air quality at hamngatan",
+  "main": "lib/hamngatan.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "6to5": "6to5-node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/halmhatt/hamngatan.git"
+  },
+  "keywords": [
+    "hamngatan",
+    "nodejs",
+    "api"
+  ],
+  "author": "Jacob Carlsson <jacob.carlsson@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/halmhatt/hamngatan/issues"
+  },
+  "homepage": "https://github.com/halmhatt/hamngatan",
+  "dependencies": {
+    "moment": "^2.9.0",
+    "request": "^2.51.0",
+    "xml2js": "^0.4.4"
+  },
+  "devDependencies": {
+    "6to5": "^3.2.1"
+  }
+}
