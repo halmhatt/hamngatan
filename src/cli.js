@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 import 'core-js/shim';
 
 var program = require('commander');

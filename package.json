@@ -7,10 +7,11 @@
     "hamngatan": "lib/cli.js"
   },
   "scripts": {
-    "pretest": "npm run build",
+    "pretest": "npm run build && npm run lint",
     "test": "mocha",
     "6to5": "6to5-node test.js",
-    "build": "make"
+    "build": "make",
+    "lint": "eslint src/*.js"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "6to5": "^3.2.1",
     "chai": "^1.10.0",
+    "eslint": "^0.13.0",
     "mocha": "^2.1.0",
     "sinon": "^1.12.2"
   }

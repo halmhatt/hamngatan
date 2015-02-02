@@ -1,0 +1,9 @@
+{
+	"ecmaFeatures": {
+		"blockBindings": true,
+		"forOf": true,
+		"templateStrings": true,
+		"defaultParams": true,
+		"generators": true
+	}
+}
