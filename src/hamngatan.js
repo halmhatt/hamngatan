@@ -34,11 +34,8 @@ class Hamngatan {
 	get(options = {}, callback = null) {
 		options.CustomKey = this.apiKey;
 		options.SystemCodeNumber = 'linkoping';
-		options.tom = options.to || moment().format(DATE_FORMAT);
-
-		if(!options.hasOwnProperty('from')) {
-			throw new Error('You need to specify from date as YYYY-MM-DD');
-		}
+		options.tom = options.to || moment().utc().format(DATE_FORMAT);
+		options.from = options.from || moment().utc().add(1, 'day').format(DATE_FORMAT);
 
 		let uri = `${API_URI}?${buildQuery(options)}`;
 
@@ -46,39 +43,10 @@ class Hamngatan {
 			request.get(uri, (err, response, body) => {
 				if(err) return reject(err);
 
-				resolve({response, body});
-			});
-		}).then((response) => {
-			return new Promise((resolve, reject) => {
-				xml2js.parseString(response.body, (err, result) => {
-					if(err) return reject(err);
-
-					resolve(result);
-				});
+				resolve(body);
 			});
 		})
-		.then((result) => {
-			if(result && 
-				result.ResponseListaLuftDataobjekt &&
-				result.ResponseListaLuftDataobjekt.ListaLuftDataobjekt.length > 0 &&
-				result.ResponseListaLuftDataobjekt.ListaLuftDataobjekt[0].LuftDataObj) {
-
-				return result.ResponseListaLuftDataobjekt.ListaLuftDataobjekt[0].LuftDataObj;
-			}
-			
-			return [];
-		})
-		.then((list) => {
-
-			return list.map((item) => {
-
-				return {
-					SystemCodeNumber: item.SystemCodeNumber[0],
-					LastUpdated: moment(item.LastUpdated[0]).toJSON(),
-					PM10: parseFloat(item.PM10[0], 10)
-				};
-			});
-		})
+		.then(body => Hamngatan.format(body))
 		.then(list => {
 			if(callback) {
 				callback(null, list);
@@ -88,6 +56,57 @@ class Hamngatan {
 		})
 		// If any error
 		.then(null, (err) => {if(callback) callback(err);});
+	}
+
+	/**
+	 * Format XML to javascript
+	 * @param  {String} xml XML input
+	 * @return {Promise}    A promise with the formated output
+	 */
+	static format(xml, callback = null) {
+
+		return new Promise((resolve, reject) => {
+				xml2js.parseString(xml, (err, result) => {
+					if(err) return reject(err);
+
+					resolve(result);
+				});
+			})
+			.then((result) => {
+				if(result && 
+					result.ResponseListaLuftDataobjekt &&
+					result.ResponseListaLuftDataobjekt.ListaLuftDataobjekt.length > 0 &&
+					result.ResponseListaLuftDataobjekt.ListaLuftDataobjekt[0].LuftDataObj) {
+
+					return result.ResponseListaLuftDataobjekt.ListaLuftDataobjekt[0].LuftDataObj;
+				}
+				
+				return [];
+			})
+			.then((list) => {
+
+				return list.map((item) => {
+
+					return {
+						SystemCodeNumber: item.SystemCodeNumber[0],
+						LastUpdated: moment(item.LastUpdated[0]).toJSON(),
+						PM10: parseFloat(item.PM10[0], 10)
+					};
+				});
+			})
+			.then((list) => {
+				if(callback !== null) {
+					callback(null, list);
+				}
+
+				return list;
+			}, (err) => {
+				if(callback !== null) {
+					callback(err);
+				}
+
+				return err;
+			});
 	}
 }
 

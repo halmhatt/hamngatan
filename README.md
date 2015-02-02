@@ -47,6 +47,9 @@ hamntagan.get({
 });
 ```
 
+## Use only the formatter
+The formatter from *XML to javascript* can be used with the *static* function `Hamngatan.format(xmlString)`. This will format the XML to javascript. *The XML needs to be from this API as this only extracts the important parts of the response.*
+
 ## CLI
 There is a CLI interface that is installed in `node_modules/.bin/hamngatan`. This makes it possible to use this tool on the command line. The CLI outputs `JSON` to `stdout` and you could save it by using `> filename.json` if you will.
 

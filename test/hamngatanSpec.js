@@ -54,10 +54,4 @@ describe('hamngatan', function() {
 			done();
 		});
 	});
-
-	it('should throw for not specifying from', function() {
-		expect(function() {
-			hamngatan.get();
-		}).to.throw(Error, /specify from/);
-	});
 });

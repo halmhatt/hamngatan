@@ -7,7 +7,7 @@
     "hamngatan": "lib/cli.js"
   },
   "scripts": {
-    "pretest": "npm run build && npm run lint",
+    "pretest": "npm run build",
     "test": "mocha",
     "6to5": "6to5-node test.js",
     "build": "make",
