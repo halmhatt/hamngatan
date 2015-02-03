@@ -1,9 +1,19 @@
 {
+	"env": {
+		"node": true
+	},
 	"ecmaFeatures": {
 		"blockBindings": true,
 		"forOf": true,
 		"templateStrings": true,
 		"defaultParams": true,
 		"generators": true
-	}
+	},
+	"rules": {
+		"camelcase": true,
+		"eqeqeq": true,
+		"curly": true,
+		"quotes": "single"
+	},
+	"scriptType": "module"
 }
