@@ -6,6 +6,7 @@ A wrapper around Linkopings API for hamngatans air quality measurements written 
 It is written in `es6` and compiled to `es5` to be used with `node`. Check the code if you want some inspiration.
 
 This *tool/lib* helps you with:
+
 1. Constructing the URI
 2. Parse the **XML**
 3. Check the returned data
