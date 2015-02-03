@@ -39,13 +39,14 @@ var Hamngatan = require('hamngatan');
 var hamngatan = new Hamngatan('your api key');
 
 hamntagan.get({
-	from: '2015-05-12'
-}).then(function(result) {
-	console.log(result);
-})
-.catch(function(err) {
-	throw err;
-});
+		from: '2015-05-12'
+	})
+	.then(function(result) {
+		console.log(result);
+	})
+	.catch(function(err) {
+		throw err;
+	});
 ```
 
 ## Use only the formatter
