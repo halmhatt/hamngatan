@@ -1,7 +1,7 @@
 {
   "name": "hamngatan",
   "version": "1.0.0",
-  "description": "Linkoping, Sweden air quality at hamngatan",
+  "description": "Air quality measurements at hamngatan, Linkoping, Sweden",
   "main": "lib/hamngatan.js",
   "bin": {
     "hamngatan": "lib/cli.js"
